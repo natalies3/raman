@@ -11,19 +11,18 @@ import pandas as pd
 import os
 import glob
 
-exp= '05-31-21'
-
+exp= '05-31-21' #file folder
 
 
 
 fnames=[]
-Rfolder = sorted(glob.glob('/Users/natalies/Documents/CU_mbpv/Owen_mbpv/data/Raman/'+exp+'/*.txt') )
-
+Rfolder = sorted(glob.glob('/Users/natalies/Documents/CU_mbpv/Owen_mbpv/data/Raman/'+exp+'/*.txt') ) #replace with where the folder is
+#this is where it is in my computer
 for f in Rfolder:
     name1=(os.path.basename(f))[:-4]
     fnames.append(os.path.basename(name1))
 #Udf0= pd.concat((pd.read_csv(f, usecols=['A'], skiprows=1) for f in UVfolder), axis=1)
 
-DF= pd.concat((pd.read_csv(f, delimiter='\t', header=None, usecols=[1]) for f in Rfolder), axis=1)
+DF= pd.concat((pd.read_csv(f, delimiter='\t', header=None, usecols=[1]) for f in Rfolder), axis=1)#puts them in one DF
 DF.columns = fnames
-DF.to_csv(exp+'DF.csv')
+DF.to_csv(exp+'DF.csv') #exports as a csv
